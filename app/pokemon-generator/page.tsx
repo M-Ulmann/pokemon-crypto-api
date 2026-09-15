@@ -17,7 +17,7 @@ export default function PokemonGenerator(){
       
       <main className="flex flex-col items-center mt-10 gap-10">
 
-        <section className="flex flex-col items-center overflow-hidden min-w-125 max-w-125 relative px-5 py-10 gap-7 rounded-2xl shadow-[2px_5px_10px_5px_rgba(0,0,0,0.25)]">   
+        <section className="flex flex-col items-center overflow-hidden sm:min-w-125 sm:max-w-125 min-w-11/12 relative px-5 py-10 gap-7 rounded-2xl shadow-[2px_5px_10px_5px_rgba(0,0,0,0.25)]">   
 
           <div className="absolute bg-yellow-500 w-130 h-120 -top-50 rounded-full z-0"></div>
 
@@ -45,7 +45,7 @@ export default function PokemonGenerator(){
 
           </div>
 
-          <div className="flex flex-row gap-20 text-xl tracking-[2px]">
+          <div className="flex flex-row sm:gap-20 text-xl tracking-[2px] gap-6">
 
             <div className="flex flex-col items-center">
               <p className="font-bold text-2xl text-yellow-500">70</p>

@@ -7,7 +7,7 @@ export default function Header({isDark, setIsDark}: {
   setIsDark: Dispatch<SetStateAction<boolean>>
 }){
   return(
-    <header className={clsx("flex flex-row flex-wrap items-center w-full h-20 text-center gap-5 px-5 justify-between text-lg sm:flex-nowrap sm:px-10 sm:text-2xl sm:gap-20 sm:justify-normal sm:-translate-y-15 sm:hover:translate-0 sm:transition",
+    <header className={clsx("flex flex-row flex-wrap items-center w-full h-30 text-center gap-5 px-5 py-2 justify-between text-lg sm:flex-nowrap sm:px-10 sm:text-2xl sm:gap-20 sm:justify-normal sm:-translate-y-15 sm:hover:translate-0 sm:transition sm:h-20",
       isDark ? "bg-lime-700 text-white" : "bg-lime-300 text-black"
     )}>
       <Link href={'/'} className="underline decoration-0 underline-offset-10 hover:decoration-4 transition-all duration-100">
@@ -22,7 +22,7 @@ export default function Header({isDark, setIsDark}: {
         Crypto Dashboard
       </Link>
 
-      <button className=" ml-auto hover:outline-2 px-5 py-2 rounded-xl"
+      <button className=" ml-auto hover:outline-2 px-3 py-1  rounded-xl sm:px-5 sm:py-2"
         onClick={() => {
           setIsDark(!isDark);
         }}

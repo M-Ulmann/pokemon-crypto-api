@@ -13,11 +13,11 @@ export default function Home(){
   const [isDark, setIsDark] = useState(false);
 
   return(
-    <div className={clsx("transition", isDark ? "bg-slate-800 text-white" : "bg-white text-black")}>
+    <div className={clsx("transition min-h-dvh", isDark ? "bg-slate-800 text-white" : "bg-white text-black")}>
 
       <Header isDark={isDark} setIsDark={setIsDark} />
 
-      <main className="flex flex-col items-center justify-start gap-10 mt-20 min-h-[90dvh]">
+      <main className="flex flex-col items-center justify-start gap-10 mt-20">
         <h1 className="text-5xl font-bold tracking-[8px] text-center px-3">
           Pick an API project
         </h1>

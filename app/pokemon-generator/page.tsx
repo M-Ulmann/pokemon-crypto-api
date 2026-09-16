@@ -4,8 +4,8 @@ import Header from "@/components/header";
 import { useEffect, useState } from "react";
 import clsx from "clsx";
 import Image from "next/image";
-import Pikachu from "@/public/pikachu.png";
 import GetPokemon from "@/lib/pokemon";
+import { elementColor } from "@/lib/elementColor";
 
 interface pokeData {
   name: string
@@ -23,6 +23,8 @@ export default function PokemonGenerator(){
   const [isDark, setIsDark] = useState(false);
   const [pokemon, setPokemon] = useState<pokeData | null>(null);
 
+  const typeColor = elementColor[pokemon?.type_1 ?? ''];
+
   useEffect(() => {
 
     GetPokemon().then(setPokemon);
@@ -36,11 +38,13 @@ export default function PokemonGenerator(){
       
       <main className="flex flex-col items-center mt-10 gap-10">
 
-        <section className={clsx("flex flex-col items-center overflow-hidden sm:min-w-125 sm:max-w-125 min-w-11/12 relative px-5 py-10 gap-7 rounded-2xl",
-          isDark ? "shadow-[0px_0px_10px_4px_rgba(255,255,255,0.25)]" : "shadow-[0px_0px_10px_4px_rgba(0,0,0,0.25)]"
-        )}>   
+        <section className="flex flex-col items-center overflow-hidden sm:min-w-125 sm:max-w-125 min-w-11/12 relative px-5 py-10 gap-7 rounded-2xl"
+            style={{boxShadow: `0 10px 15px -3px ${typeColor}`}}
+          >   
 
-          <div className="absolute bg-yellow-500 w-130 h-120 -top-50 rounded-full z-0 shadow-lg shadow-yellow-500"></div>
+          <div className="absolute w-130 h-120 -top-50 rounded-full z-0 shadow-lg"
+            style={{background: typeColor, boxShadow: `0 10px 15px -3px ${typeColor}`}}
+          ></div>
 
           <p className="bg-white rounded-4xl self-end px-6 py-2 text-xl z-10 text-black">
             <span className=" uppercase text-sm font-bold">hp</span> {pokemon?.hp}        
@@ -65,11 +69,19 @@ export default function PokemonGenerator(){
           
           <div className="flex flex-row flex-wrap gap-20 font-bold text-white">
 
-            <p className="bg-yellow-500 rounded-3xl px-5 py-1">{pokemon?.type_1}</p>
+            <p className="rounded-3xl px-5 py-1"
+              style={{backgroundColor: typeColor}}
+            >
+              {pokemon?.type_1}
+            </p>
 
             {
               pokemon?.type_2 ? 
-              <p className="bg-yellow-500 rounded-3xl px-5 py-1">{pokemon?.type_2}</p> 
+              <p className="rounded-3xl px-5 py-1"
+                style={{backgroundColor: typeColor}}
+              >
+                {pokemon?.type_2}
+              </p> 
               : ""
             }
             
@@ -79,17 +91,29 @@ export default function PokemonGenerator(){
           <div className="flex flex-row sm:gap-20 text-xl tracking-[2px] gap-6">
 
             <div className="flex flex-col items-center">
-              <p className="font-bold text-2xl text-yellow-500">{pokemon?.attack}</p>
+              <p className="font-bold text-2xl"
+                style={{color: typeColor}}
+              >
+                {pokemon?.attack}
+              </p>
               <p>Attack</p>
             </div>
 
             <div className="flex flex-col items-center">
-              <p className="font-bold text-2xl text-yellow-500">{pokemon?.defense}</p>
+              <p className="font-bold text-2xl"
+                style={{color: typeColor}}
+              >
+                {pokemon?.defense}
+              </p>
               <p>defense</p>
             </div>
 
             <div className="flex flex-col items-center">
-              <p className="font-bold text-2xl text-yellow-500">{pokemon?.speed}</p>
+              <p className="font-bold text-2xl"
+                style={{color: typeColor}}
+              >
+                {pokemon?.speed}               
+              </p>
               <p>speed</p>
             </div>
 
@@ -102,7 +126,6 @@ export default function PokemonGenerator(){
         )}
           onClick={() => {
             GetPokemon().then(setPokemon);
-            console.log(pokemon);
           }}
         >
           Generate

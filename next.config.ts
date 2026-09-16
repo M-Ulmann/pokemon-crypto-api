@@ -5,7 +5,7 @@ const nextConfig: NextConfig = {
     remotePatterns:[
       {
         protocol: 'https',
-        hostname: 'pokeapi.co'
+        hostname: 'raw.githubusercontent.com'
       }
     ]
   }

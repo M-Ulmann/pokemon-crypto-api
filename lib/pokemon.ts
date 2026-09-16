@@ -1,4 +1,15 @@
-export default async function GetPokemon(){
+export interface pokeData {
+  name: string
+  hp: number
+  attack: number
+  defense: number
+  speed: number
+  type_1: string
+  type_2: string
+  image: string
+}
+
+export default async function GetPokemon(): Promise<pokeData>{
   const RNG = Math.floor(Math.random() * 1351);
 
   let pokemonURL = '';
@@ -30,8 +41,8 @@ export default async function GetPokemon(){
     console.log("Error while fetching a pokemon: ", error)
   }
 
-  return await {
-    name: 0,
+  return {
+    name: '',
     hp: 0,
     attack: 0,
     defense: 0,

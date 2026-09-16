@@ -6,17 +6,7 @@ import clsx from "clsx";
 import Image from "next/image";
 import GetPokemon from "@/lib/pokemon";
 import { elementColor } from "@/lib/elementColor";
-
-interface pokeData {
-  name: string
-  hp: number
-  attack: number
-  defense: number
-  speed: number
-  type_1: string
-  type_2: string
-  image: string
-}
+import { pokeData } from "@/lib/pokemon";
 
 export default function PokemonGenerator(){
 

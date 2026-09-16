@@ -12,11 +12,13 @@ export default function CryptoDashboard(){
   const [isDark, setIsDark] = useState(false);
 
   return (
-    <div className={clsx("transition", isDark ? "bg-slate-800 text-white" : "bg-white text-black")}>
+    <div className={clsx("transition min-h-dvh", isDark ? "bg-slate-800 text-white" : "bg-white text-black")}>
       <Header isDark={isDark} setIsDark={setIsDark}/>
       
       <main>
-        <header className="flex flex-row items-center h-25 bg-gray-400 text-white px-2 justify-between gap-10 sm:px-10">
+        <header className={clsx("flex flex-row items-center h-25 bg-gray-400 text-white px-2 justify-between gap-10 sm:px-10",
+          isDark ? "bg-gray-600" : "bg-gray-400"
+        )}>
           <div className="flex flex-row items-center gap-5">
             <Link href={'/crypto-dashboard'} className="shrink-0">
               <Image

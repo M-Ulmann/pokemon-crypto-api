@@ -22,7 +22,7 @@ export default function Home(){
           Pick an API project
         </h1>
         
-        <div className="grid grid-cols-2 gap-10 text-center max-w-11/12 sm:max-w-1/2">
+        <div className="grid grid-cols-1 gap-10 text-center max-w-11/12 sm:grid-cols-2">
           <Link href={'/pokemon-generator'}
             className={clsx("rounded-2xl p-1 sm:p-5 flex flex-col items-center transition-all gap-5",
               isDark ? "hover:shadow-[0px_0px_10px_4px_rgba(255,255,255,0.25)]" : "hover:shadow-[0px_0px_10px_4px_rgba(0,0,0,0.25)]"
@@ -34,9 +34,9 @@ export default function Home(){
               height={100}
               alt="pikachu img"
             />
-            <div className="">
+            <div>
 
-              <h2 className="text-3xl font-bold">
+              <h2 className="text-2xl font-bold sm:text-3xl">
                 Pokemon Generator
               </h2>
               <p className="text-lg">
@@ -61,7 +61,7 @@ export default function Home(){
 
             <div>
 
-              <h2 className="text-3xl font-bold">
+              <h2 className="text-2xl font-bold sm:text-3xl">
                 Crypto Dashboard 
               </h2>
               <p className="text-lg">

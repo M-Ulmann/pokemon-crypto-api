@@ -155,16 +155,19 @@ export default function GetCryptoDashboard(){
                     {crypto?.name}
                   </td>
                   <td>
-                    ${crypto?.price}
+                    {currency === "USD" ? "$" : ""}
+                    {currency === "EUR" ? "€" : ""}
+                    {crypto?.price.toFixed(2)}
+                    {currency === 'CZK' ? "Kč" : ""}
                   </td>
                   <td>
-                    {crypto?.change_24h}
+                    {crypto?.change_24h.toFixed(2)}
                   </td>
                   <td className="hidden sm:table-cell">
-                    ${crypto?.volume_24h}
+                    ${(crypto?.volume_24h / 1000000000).toFixed(2)} B
                   </td>
                   <td className="hidden sm:table-cell">
-                    ${crypto?.market_cap}
+                    ${(crypto?.market_cap / 1000000000).toFixed(2)} B
                   </td>
                 </tr>
               )}

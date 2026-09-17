@@ -1,15 +1,25 @@
 "use client"
 
 import Header from "@/components/header";
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import clsx from "clsx";
 import Pikachu from "@/public/pikachu.png"
 import Image from "next/image";
 import Link from "next/link";
+import { GetCryptoInfo } from "@/lib/crypto";
+import {Crypto} from "@/lib/crypto";
 
-export default function CryptoDashboard(){
+export default function GetCryptoDashboard(){
 
   const [isDark, setIsDark] = useState(false);
+  const [cryptoInfo, setCryptoInfo] = useState<Crypto | null>(null);
+  const [currency, setCurrency] = useState('CZK');
+
+  useEffect(() => {
+
+    GetCryptoInfo('btc-bitcoin', currency).then(setCryptoInfo);
+
+  }, [currency])
 
   return (
     <div className={clsx("transition min-h-dvh", isDark ? "bg-slate-800 text-white" : "bg-white text-black")}>
@@ -41,6 +51,10 @@ export default function CryptoDashboard(){
 
             <select className="bg-gray-500 px-5 py-3 cursor-pointer rounded-lg hover:opacity-70"
               name="currency" id="currency"
+              value={currency}
+              onChange={(event) => {
+                setCurrency(event.target.value);
+              }}
             >
               <option value="CZK">CZK</option>
               <option value="EUR">EUR</option>
@@ -130,19 +144,19 @@ export default function CryptoDashboard(){
                   1
                 </td>
                 <td>
-                  Bitcoin
+                  {cryptoInfo?.name}
                 </td>
                 <td>
-                  $45612
+                  ${cryptoInfo?.price}
                 </td>
                 <td>
-                  + 0.10%
+                  {cryptoInfo?.change_24h}
                 </td>
                 <td className="hidden sm:table-cell">
-                  $80.40 B
+                  ${cryptoInfo?.volume_24h}
                 </td>
                 <td className="hidden sm:table-cell">
-                  $1.26T
+                  ${cryptoInfo?.market_cap}
                 </td>
               </tr>
             </tbody>

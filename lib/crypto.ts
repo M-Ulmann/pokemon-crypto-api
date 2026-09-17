@@ -6,9 +6,9 @@ export interface Crypto{
   market_cap: number
 }
 
-export async function GetCryptoInfo(coin: string, currency: string): Promise<Crypto>{
+export async function GetCryptoInfo(id: string, currency: string): Promise<Crypto>{
   try{
-    const api = await fetch(`https://api.coinpaprika.com/v1/tickers/${coin}?quotes=${currency}`);
+    const api = await fetch(`https://api.coinpaprika.com/v1/tickers/${id}?quotes=${currency}`);
     const data = await api.json();
     return{
       name: data.name,

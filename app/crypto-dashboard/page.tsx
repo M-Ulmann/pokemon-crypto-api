@@ -8,16 +8,23 @@ import Image from "next/image";
 import Link from "next/link";
 import { GetCryptoInfo } from "@/lib/crypto";
 import {Crypto} from "@/lib/crypto";
+import { cryptoList } from "@/lib/cryptoList";
 
 export default function GetCryptoDashboard(){
 
   const [isDark, setIsDark] = useState(false);
-  const [cryptoInfo, setCryptoInfo] = useState<Crypto | null>(null);
+  const [cryptoInfo, setCryptoInfo] = useState<Crypto[]>([]);
   const [currency, setCurrency] = useState('CZK');
 
   useEffect(() => {
+    
+    const getAllCryptos = async () => {
+      const loadCrypto = cryptoList.map((id) => GetCryptoInfo(id, currency))
+      const result = await Promise.all(loadCrypto);
+      setCryptoInfo(result);
+    }
 
-    GetCryptoInfo('btc-bitcoin', currency).then(setCryptoInfo);
+    getAllCryptos();
 
   }, [currency])
 
@@ -139,26 +146,28 @@ export default function GetCryptoDashboard(){
             </thead>
 
             <tbody className="text-lg">
-              <tr>
-                <td>
-                  1
-                </td>
-                <td>
-                  {cryptoInfo?.name}
-                </td>
-                <td>
-                  ${cryptoInfo?.price}
-                </td>
-                <td>
-                  {cryptoInfo?.change_24h}
-                </td>
-                <td className="hidden sm:table-cell">
-                  ${cryptoInfo?.volume_24h}
-                </td>
-                <td className="hidden sm:table-cell">
-                  ${cryptoInfo?.market_cap}
-                </td>
-              </tr>
+              {cryptoInfo.map((crypto,index) => 
+                <tr key={index || crypto.name}>
+                  <td>
+                    {index + 1}
+                  </td>
+                  <td>
+                    {crypto?.name}
+                  </td>
+                  <td>
+                    ${crypto?.price}
+                  </td>
+                  <td>
+                    {crypto?.change_24h}
+                  </td>
+                  <td className="hidden sm:table-cell">
+                    ${crypto?.volume_24h}
+                  </td>
+                  <td className="hidden sm:table-cell">
+                    ${crypto?.market_cap}
+                  </td>
+                </tr>
+              )}
             </tbody>
           </table>
         </section>

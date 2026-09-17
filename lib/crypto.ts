@@ -31,3 +31,17 @@ export async function GetCryptoInfo(id: string, currency: string): Promise<Crypt
   }
 
 }
+
+export interface Global{
+  global_market: number,
+  global_volume: number,
+}
+
+export async function GlobalMarket(){
+  const api = await fetch(`https://api.coinpaprika.com/v1/global`);
+  const data = await api.json();
+  return {
+    global_market: data.market_cap_usd,
+    global_volume: data.volume_24h_usd,
+  }
+}

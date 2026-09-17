@@ -13,8 +13,8 @@ const geistMono = Geist_Mono({
 });
 
 export const metadata: Metadata = {
-  title: "Choose an API",
-  description: "Pick an API Project",
+  title: "API Projects",
+  description: "Will it be pokemon generator or Crypto Dashboard?",
 };
 
 export default function RootLayout({ children }: LayoutProps<"/">) {

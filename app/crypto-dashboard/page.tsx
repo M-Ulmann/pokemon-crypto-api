@@ -5,8 +5,8 @@ import { useEffect, useState } from "react";
 import clsx from "clsx";
 import Image from "next/image";
 import Link from "next/link";
-import { GetCryptoInfo } from "@/lib/crypto";
-import {Crypto} from "@/lib/crypto";
+import { GetCryptoInfo, GlobalMarket } from "@/lib/crypto";
+import {Crypto, Global} from "@/lib/crypto";
 import { cryptoList } from "@/lib/cryptoList";
 import Bitcoin from "@/public/bitcoin.png"
 
@@ -15,6 +15,7 @@ export default function GetCryptoDashboard(){
   const [isDark, setIsDark] = useState(false);
   const [cryptoInfo, setCryptoInfo] = useState<Crypto[]>([]);
   const [currency, setCurrency] = useState('CZK');
+  const [global, setGlobal] = useState({global_market: 0, global_volume: 0});
 
   useEffect(() => {
     
@@ -27,6 +28,12 @@ export default function GetCryptoDashboard(){
     getAllCryptos();
 
   }, [currency])
+
+  useEffect(() =>{
+    
+    GlobalMarket().then(setGlobal);
+
+  }, [])
 
   return (
     <div className={clsx("transition min-h-dvh", isDark ? "bg-slate-800 text-white" : "bg-white text-black")}>
@@ -81,10 +88,7 @@ export default function GetCryptoDashboard(){
                 total market cap
               </h3>
               <p className="text-lg font-bold text-center md:text-left">
-                {currency === "USD" ? "$" : ""}
-                {currency === "EUR" ? "€" : ""}
-                2.42T
-                {currency === 'CZK' ? " Kč" : ""}
+                ${(global?.global_market / 1000000000000).toFixed(2)}T
               </p>
             </div>
 
@@ -93,10 +97,7 @@ export default function GetCryptoDashboard(){
                 24h global volume
               </h3>
               <p className="text-lg font-bold text-center md:text-left">
-                {currency === "USD" ? "$" : ""}
-                {currency === "EUR" ? "€" : ""}
-                $84.2B
-                {currency === 'CZK' ? " Kč" : ""}
+              ${(global?.global_volume / 1000000000).toFixed(2)}B
               </p>
             </div>
 

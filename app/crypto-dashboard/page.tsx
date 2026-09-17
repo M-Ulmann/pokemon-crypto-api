@@ -116,7 +116,7 @@ export default function GetCryptoDashboard(){
             live prices
           </h2>
           <table className="crypto-table text-left outline-2 outline-dashed">
-            <thead className="text-xl border-b-3 border-dashed border-emerald-600">
+            <thead className="text-lg md:text-xl border-b-3 border-dashed border-emerald-600">
               <tr>
                 <th>
                   <button>
@@ -151,7 +151,7 @@ export default function GetCryptoDashboard(){
               </tr>
             </thead>
 
-            <tbody className="text-lg">
+            <tbody className="text-md md:text-lg">
               {cryptoInfo.map((crypto,index) => 
                 <tr key={index || crypto.name}>
                   <td>

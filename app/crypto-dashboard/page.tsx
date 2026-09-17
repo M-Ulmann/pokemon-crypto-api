@@ -3,12 +3,12 @@
 import Header from "@/components/header";
 import { useEffect, useState } from "react";
 import clsx from "clsx";
-import Pikachu from "@/public/pikachu.png"
 import Image from "next/image";
 import Link from "next/link";
 import { GetCryptoInfo } from "@/lib/crypto";
 import {Crypto} from "@/lib/crypto";
 import { cryptoList } from "@/lib/cryptoList";
+import Bitcoin from "@/public/bitcoin.png"
 
 export default function GetCryptoDashboard(){
 
@@ -39,7 +39,7 @@ export default function GetCryptoDashboard(){
           <div className="flex flex-row items-center gap-5">
             <Link href={'/crypto-dashboard'} className="shrink-0">
               <Image
-                src={Pikachu}
+                src={Bitcoin}
                 width={60}
                 height={60}
                 alt="crypto"

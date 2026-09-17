@@ -10,12 +10,12 @@ button{
 
 .crypto-table td, 
 .crypto-table th{
-  padding: 10pt 15pt
+  padding: 10pt 15pt;
 }
 
 @media (max-width: 450px){
     .crypto-table td, 
     .crypto-table th{
-    padding: 10pt 3pt
+    padding: 10pt 3pt;
   }
 }

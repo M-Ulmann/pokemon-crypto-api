@@ -81,7 +81,10 @@ export default function GetCryptoDashboard(){
                 total market cap
               </h3>
               <p className="text-lg font-bold text-center md:text-left">
-                $2.42 T
+                {currency === "USD" ? "$" : ""}
+                {currency === "EUR" ? "€" : ""}
+                2.42T
+                {currency === 'CZK' ? " Kč" : ""}
               </p>
             </div>
 
@@ -90,7 +93,10 @@ export default function GetCryptoDashboard(){
                 24h global volume
               </h3>
               <p className="text-lg font-bold text-center md:text-left">
-                $84.2 B
+                {currency === "USD" ? "$" : ""}
+                {currency === "EUR" ? "€" : ""}
+                $84.2B
+                {currency === 'CZK' ? " Kč" : ""}
               </p>
             </div>
 
@@ -158,16 +164,22 @@ export default function GetCryptoDashboard(){
                     {currency === "USD" ? "$" : ""}
                     {currency === "EUR" ? "€" : ""}
                     {crypto?.price.toFixed(2)}
-                    {currency === 'CZK' ? "Kč" : ""}
+                    {currency === 'CZK' ? " Kč" : ""}
                   </td>
-                  <td>
-                    {crypto?.change_24h.toFixed(2)}
-                  </td>
-                  <td className="hidden sm:table-cell">
-                    ${(crypto?.volume_24h / 1000000000).toFixed(2)} B
+                  <td className={clsx(crypto?.change_24h < 1 ? "text-red-700" : "text-green-600")}>
+                    % {crypto?.change_24h.toFixed(2)}
                   </td>
                   <td className="hidden sm:table-cell">
-                    ${(crypto?.market_cap / 1000000000).toFixed(2)} B
+                    {currency === "USD" ? "$" : ""}
+                    {currency === "EUR" ? "€" : ""}
+                    {(crypto?.volume_24h / 1000000000).toFixed(2)}B
+                    {currency === 'CZK' ? " Kč" : ""}
+                  </td>
+                  <td className="hidden sm:table-cell">
+                    {currency === "USD" ? "$" : ""}
+                    {currency === "EUR" ? "€" : ""}
+                    {(crypto?.market_cap / 1000000000).toFixed(2)}B
+                    {currency === 'CZK' ? " Kč" : ""}
                   </td>
                 </tr>
               )}
